@@ -59,11 +59,11 @@ public class LoginTest {
     @Test(description = "Logout")
     public void test3(){
 
-//       driver.findElement(By.xpath("//div[@loader-mask shown']")).click();
-//
-//     SeleniumUtils.waitPlease(3);
-//    driver.findElement(By.xpath("//*[@href='/user/logout']")).sendKeys(Keys.ENTER);
-//    SeleniumUtils.waitPlease(3);
+       SeleniumUtils.clickWithWait(driver,By.xpath("//div[@loader-mask shown']"),5);
+
+     SeleniumUtils.waitPlease(3);
+    SeleniumUtils.clickWithWait(driver,By.xpath("//*[@href='/user/logout']"),5);
+    SeleniumUtils.waitPlease(3);
 
 
     }

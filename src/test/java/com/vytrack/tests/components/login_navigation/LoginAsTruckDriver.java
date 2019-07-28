@@ -7,6 +7,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.pagefactory.ByAll;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -38,10 +39,12 @@ public class LoginAsTruckDriver {
 
 
     }
+
     @Test(description = "Verify\tDashboad\tpage\tis\topen")
     public void test2(){
 
         String dashboard=driver.findElement(By.xpath("//h1[@class='oro-subtitle']")).getText();
+        SeleniumUtils.waitPlease(3);
 
         System.out.println(dashboard.equals("Dashboard"));
     }
@@ -62,7 +65,7 @@ public class LoginAsTruckDriver {
     @Test(description = "Logout")
     public void test3(){
 
-       driver.findElement(By.xpath("//*[@role='menu']")).click();
+        SeleniumUtils.clickWithWait(driver,By.xpath("//*[@role='menu']"),4);
        SeleniumUtils.waitPlease(2);
 
 
@@ -74,6 +77,6 @@ public class LoginAsTruckDriver {
     @AfterMethod
     public void teardown(){
         SeleniumUtils.waitPlease(2);
-        driver.quit();
+       // driver.quit();
     }
 }

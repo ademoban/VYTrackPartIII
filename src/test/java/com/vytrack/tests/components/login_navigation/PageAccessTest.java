@@ -33,6 +33,8 @@ public class PageAccessTest {
         driver.get("http://qa2.vytrack.com/user/login");
 
 
+
+
     }
     @Test(description = "Vehicle\tcontracts\ttest\tstore\tmanager")
   public void test1(){
@@ -41,14 +43,14 @@ public class PageAccessTest {
         SeleniumUtils.waitPlease(1);
         driver.findElement(By.id("prependedInput2")).sendKeys("UserUser123");
         driver.findElement(By.xpath("//button[@id='_submit']")).click();
-
+        SeleniumUtils.waitPlease(6);
       WebElement dropdown=  driver.findElement(By.xpath("//span[@class='title title-level-1'][contains(text(),'Fleet')]"));
       dropdown.click();
-      SeleniumUtils.waitPlease(3);
+        SeleniumUtils.waitPlease(6);
         driver.findElement(By.xpath("//span[contains(text(),'Vehicle Contracts')]")).click();
-        SeleniumUtils.waitPlease(3);
+        SeleniumUtils.waitPlease(6);
         System.out.println(driver.findElement(By.xpath("//h1[@class='oro-subtitle']")).isDisplayed());
-
+        SeleniumUtils.waitPlease(6);
 
     }
 @Test(description = "Vehicle\tcontracts\ttest\tsales\tmanager")
@@ -58,12 +60,12 @@ public class PageAccessTest {
         SeleniumUtils.waitPlease(1);
         driver.findElement(By.id("prependedInput2")).sendKeys("UserUser123");
         driver.findElement(By.xpath("//button[@id='_submit']")).click();
-
+    SeleniumUtils.waitPlease(6);
         WebElement dropdown=  driver.findElement(By.xpath("//span[@class='title title-level-1'][contains(text(),'Fleet')]"));
         dropdown.click();
-        SeleniumUtils.waitPlease(3);
+        SeleniumUtils.waitPlease(6);
     driver.findElement(By.xpath("//span[contains(text(),'Vehicle Contracts')]")).click();
-    SeleniumUtils.waitPlease(3);
+    SeleniumUtils.waitPlease(6);
     System.out.println(driver.findElement(By.xpath("//h1[@class='oro-subtitle']")).isDisplayed());
 
     }

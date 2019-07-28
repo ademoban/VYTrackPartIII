@@ -1,6 +1,7 @@
 package com.vytrack.utilities;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class SeleniumUtils {
         } else {
             System.out.println("failed " + element.getAttribute("id"));
         }
+
     }
 
     public static void openPage(String page, WebDriver driver) {
@@ -45,6 +47,28 @@ public class SeleniumUtils {
             if (example.getText().contains(page)) {
                 example.click();
                 break;
+            }
+        }
+
+    }
+
+    public static void clickWithWait(WebDriver driver, By by, int attempts) {
+        int counter = 0;
+        //click on element as many as you specified in attempts parameter
+        while (counter < attempts) {
+            try {
+                //selenium must look for element again
+                driver.findElement(by).click();
+                //if click is successful - then break
+                break;
+            } catch (WebDriverException e) {
+                //if click failed
+                //print exception
+                System.out.println(e);
+                //print attempt
+                System.out.println("Attempt :: " + ++counter);
+                //wait for 1 second, and try to click again
+                waitPlease(2);
             }
         }
     }
