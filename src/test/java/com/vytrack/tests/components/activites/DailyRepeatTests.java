@@ -84,9 +84,9 @@ startup();
     @Test(description = "Verify that days input disable")
     public void daysInput(){
        startup();
-        driver.findElement(By.xpath("//span[contains(text(),'Weekday')]")).click();
+       driver.findElement(By.xpath("//span[contains(text(),'Weekday')]")).click();
         SeleniumUtils.waitPlease(3);
-        Assert.assertTrue(driver.findElement(By.cssSelector("[name^=temp-validation-name]")).isDisplayed());
+        Assert.assertFalse(driver.findElement(By.xpath("//input[@data-validation='{\"NotBlank\":{},\"Number\":{\"min\":1,\"max\":99},\"Type\":{\"type\":\"integer\"}}']")).isEnabled());
     }
     @Test(description = " verify summary says Daily every weekday")
     public void summaryVerify(){
