@@ -12,7 +12,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Random;
 
@@ -24,7 +23,7 @@ public class DailyRepeatTests extends TestBase {
   static String repeatCheckBox = "[id^=recurrence-repeat-]";
     String dailyselection = "[id^=recurrence-repeats-]";
     String daysCheckBox = "//input[@type='radio'][@checked='checked']";
-   String numberLocator = "//input[@data-validation='{\"NotBlank\":{},\"Number\":{\"min\":1,\"max\":99},\"Type\":{\"type\":\"integer\"}}']";
+   String numberLocator = "[name^='temp-validation-name-']";
 
 
 
@@ -58,11 +57,12 @@ public class DailyRepeatTests extends TestBase {
     public void defaultValue() {
 
 startup();
-extentLogger= report.createTest("default value is 1");
-        List<WebElement> repeatDaysButton = driver.findElements(By.cssSelector("input[class='recurrence-subview-control__number']"));
-        Assert.assertEquals(repeatDaysButton.get(0).getAttribute("value"), "1");
-        extentLogger.pass("Verified default value is 1");
-
+        String expectednumber = "1";
+        String actualnumber = driver.findElement(By.cssSelector(numberLocator)).getText();
+        SeleniumUtils.waitPlease(5);
+        Assert.assertEquals(expectednumber, actualnumber);
+        System.out.println("actualnumber = " + actualnumber);
+        System.out.println("expectednumber = " + expectednumber);
     }
     @Test(description = "summary= Daily every 1 day")
     public void summary(){
@@ -86,8 +86,8 @@ extentLogger= report.createTest("default value is 1");
        startup();
         driver.findElement(By.xpath("//span[contains(text(),'Weekday')]")).click();
         SeleniumUtils.waitPlease(3);
-        Assert.assertFalse(driver.findElement(By.xpath("//input[@data-validation='{\"NotBlank\":{},\"Number\":{\"min\":1,\"max\":99},\"Type\":{\"type\":\"integer\"}}']")).isEnabled());
-        }
+        Assert.assertTrue(driver.findElement(By.cssSelector("[name^=temp-validation-name]")).isDisplayed());
+    }
     @Test(description = " verify summary says Daily every weekday")
     public void summaryVerify(){
         startup();
@@ -104,7 +104,7 @@ extentLogger= report.createTest("default value is 1");
     public void errorMessage(){
     startup();
     Random random= new Random();
-    int rdm=random.nextInt(100);
+    int rdm=random.nextInt(500);
 
 
 
