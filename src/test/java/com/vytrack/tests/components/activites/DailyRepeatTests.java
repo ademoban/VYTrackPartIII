@@ -1,5 +1,6 @@
 package com.vytrack.tests.components.activites;
 
+import com.vytrack.tests.components.dashboards.ActivitiesPage;
 import com.vytrack.utilities.ConfigurationReader;
 import com.vytrack.utilities.SeleniumUtils;
 import com.vytrack.utilities.TestBase;
@@ -31,6 +32,7 @@ public class DailyRepeatTests extends TestBase {
      void DailyRepeatOption() {
 
        startup();
+
 
         String expectedDailyBox = "Daily";
         WebElement dropdown = driver.findElement(By.cssSelector(dailyselection));
