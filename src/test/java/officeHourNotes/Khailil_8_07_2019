@@ -1,0 +1,35 @@
+// Khalili Office hour note 8/7/2019
+Agenda:
+    - Selenium Synchronization
+        - Implicit Wait
+        - Explicit Wait
+        - Fluent Wait
+        - Thread.sleep();
+    - How do you debug your test script if it fails?
+    - Can you write a method which finds remainder of 2 numbers without using
+      the % operator?
+    - Soft Skill, market related concerns and questoins.
+What is synchronization in Selenium?
+    - Thread.sleep(); It is a java method which pause the browser, this java method is taking a parameter of mili seconds and will pause the program for certain number of time.
+    - Implicite Wait time: it is one time configuration, it will apply for the entire test script, it will keep trying until the time is up, it works with findElement method, if it does not find the element, then it will through NoSuchElementException.
+    Example:
+        driver.manage().timeouts.implicitelyWait(5, TimeUnit.SECOND);
+    - Explicit wait time: This is waiting for certain condition to happen, it does not apply globally like Iplicit Wait time, so it will not be dynamic and will focus on whatever condition you set your wait. It needs to called explicitly when we wait for the operation.
+    We need to instantiate the object of WebDriverWait, once we did so then we will use that object to wait for certain condtions.
+    Example:
+    WebElement message = driver.findElement(By.xpath("xxxx"));
+    WebDriverWait wait = new WebDriverWait(driver, 5);
+    wait.until(ExpectedCondtion.visibilityOf(message));
+- Fluent wait:
+    - It is just like Explicit wait, but we can make the wait more customized, we can specify how often it should poll, what exception should be iqnored.
+    Example:
+    Wait<WebDriver> fluentWait = new FluentWait<WebDriver>(driver)
+                                 .withTimeout(Duration.ofSeconds(10))
+                                 .pollingEvery(Duration.ofSeconds(2))
+                                 .iqnoring(NoSuchElementException.class);
+How do you debug your test scripts in case it fails and you don't know what
+is the problem?
+1 - first of all we need to check our locators, maybe it is a dynamic website and the html elements are changing more often.
+2 - We need to check synchronization (implicit, explicit, fluent waits) depending on the contions that you take an exception.
+3 - Please always check your html structure to make sure that your are in the right iframe, if you are not, then please located the iframe and swithch to the right iframe.
+-
